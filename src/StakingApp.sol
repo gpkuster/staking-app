@@ -7,7 +7,6 @@ import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 // Staking fixed amount (10 tokens)
 // Staking reward period (1 dia) - cada que pase podrá recoger rewards. Una vez lo retire ya no podra
 //
-
 contract StakingApp is Ownable {
     address public stakingToken;
     uint256 public stakingPeriod;

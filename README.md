@@ -24,11 +24,13 @@ To use or build this project, follow these steps:
 1. 📥 Clone the repository:
 ```
 git clone https://github.com/gpkuster/staking-app.git
+cd staking-app
 ```
 
 2. 📦 Install dependencies:
 ```
-forge install
+forge install foundry-rs/forge-std
+forge install OpenZeppelin/openzeppelin-contracts
 ```
 3. 🧱 Compile the contracts:
 ```
