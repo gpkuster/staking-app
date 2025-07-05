@@ -1,66 +1,48 @@
-## Foundry
+# 💰 Staking App (Foundry)
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This is a simple staking application built with Solidity and Foundry. It allows users to stake a fixed amount of ERC20 tokens and receive ETH rewards after a defined period. The project includes a custom ERC20 token (`StakingToken`) and a staking contract (`StakingApp`).
 
-Foundry consists of:
+## ✨ Features
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- 🔒 Fixed staking amount per user
+- ⏱️ One-time reward claim after a reward period
+- 🛠️ Owner can adjust staking parameters
+- 💸 Users receive ETH rewards
+- 🧪 Includes test token with minting function
 
-## Documentation
+## 📁 Project Structure
 
-https://book.getfoundry.sh/
+- `src/`: Contains the smart contracts
+- `test/`: Foundry tests (if any)
+- `.gitignore`: Ignores build artifacts and dependencies
+- `foundry.toml`: Foundry configuration file
 
-## Usage
+## 🚀 Getting Started
 
-### Build
+To use or build this project, follow these steps:
 
-```shell
-$ forge build
+1. 📥 Clone the repository:
+```
+git clone https://github.com/gpkuster/staking-app.git
 ```
 
-### Test
-
-```shell
-$ forge test
+2. 📦 Install dependencies:
 ```
-
-### Format
-
-```shell
-$ forge fmt
+forge install
 ```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
+3. 🧱 Compile the contracts:
 ```
-
-### Anvil
-
-```shell
-$ anvil
+forge build
 ```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+4. 🧪 (Optional) Run tests:
 ```
-
-### Cast
-
-```shell
-$ cast <subcommand>
+forge test
 ```
+## ⚠️ Notes
 
-### Help
+- The `lib/` folder is **not included** in the repository to keep it clean. You must run `forge install` to download dependencies like OpenZeppelin.
+- Make sure you have Foundry installed: https://book.getfoundry.sh/
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## 🪪 License
+
+MIT

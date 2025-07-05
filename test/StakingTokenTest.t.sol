@@ -24,5 +24,4 @@ contract StakingTokenTest is Test {
         vm.stopPrank();
         assert((balanceAfterMint_ - balanceBeforeMint_) == amount_);
     }
-    
 }
