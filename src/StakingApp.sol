@@ -6,8 +6,7 @@ import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 // Staking fixed amount (10 tokens)
 // Staking reward period (1 dia) - cada que pase podrá recoger rewards. Una vez lo retire ya no podra
-// 
-
+//
 
 contract StakingApp is Ownable {
     address public stakingToken;
@@ -24,7 +23,9 @@ contract StakingApp is Ownable {
     event EtherSent(uint256 amount_);
 
     // We can use onlyOwner() without defining it
-    constructor(address _stakingToken, address _initialOwner, uint256 _stakingPeriod, uint256 _rewardPerPeriod) Ownable(_initialOwner) {
+    constructor(address _stakingToken, address _initialOwner, uint256 _stakingPeriod, uint256 _rewardPerPeriod)
+        Ownable(_initialOwner)
+    {
         stakingToken = _stakingToken;
         stakingPeriod = _stakingPeriod;
         rewardPerPeriod = _rewardPerPeriod;
@@ -57,7 +58,7 @@ contract StakingApp is Ownable {
 
         elapsedPeriod[msg.sender] = block.timestamp;
 
-        (bool success, ) = msg.sender.call{value: rewardPerPeriod}("");
+        (bool success,) = msg.sender.call{value: rewardPerPeriod}("");
         require(success, "Transfer failed");
     }
 
@@ -76,5 +77,4 @@ contract StakingApp is Ownable {
         stakingPeriod = newStakingAmount;
         emit ChangeStakingPeriod(newStakingAmount);
     }
-    
 }
