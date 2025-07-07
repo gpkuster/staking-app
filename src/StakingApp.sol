@@ -4,9 +4,8 @@ pragma solidity 0.8.24;
 import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
-// Staking fixed amount (10 tokens)
-// Staking reward period (1 dia) - cada que pase podrá recoger rewards. Una vez lo retire ya no podra
-//
+// Staking fixed amount (specified in constructor)
+// Staking reward period (specified in constructor)
 contract StakingApp is Ownable {
     address public stakingToken;
     uint256 public stakingPeriod;
@@ -22,11 +21,16 @@ contract StakingApp is Ownable {
     event EtherSent(uint256 amount_);
 
     // We can use onlyOwner() without defining it
-    constructor(address _stakingToken, address _initialOwner, uint256 _stakingPeriod, uint256 _rewardPerPeriod)
-        Ownable(_initialOwner)
-    {
+    constructor(
+        address _stakingToken,
+        address _initialOwner,
+        uint256 _fixedStakingAmount,
+        uint256 _stakingPeriod,
+        uint256 _rewardPerPeriod
+    ) Ownable(_initialOwner) {
         stakingToken = _stakingToken;
         stakingPeriod = _stakingPeriod;
+        fixedStakingAmount = _fixedStakingAmount;
         rewardPerPeriod = _rewardPerPeriod;
     }
 
@@ -42,7 +46,7 @@ contract StakingApp is Ownable {
 
     function withdrawTokens() external {
         // CEI pattern not needed here because we are not using fallback functions (in which mailitious code could be executed), but it is better to use it
-        // We could be using a malicious token...
+        // Though, we could be using a malicious token...
         // Also, in ERC-721, there is something similar to receive functions
         uint256 _userBalance = userBalance[msg.sender];
         userBalance[msg.sender] = 0;
@@ -57,12 +61,12 @@ contract StakingApp is Ownable {
 
         elapsedPeriod[msg.sender] = block.timestamp;
 
+        // contract needs to be fed
         (bool success,) = msg.sender.call{value: rewardPerPeriod}("");
         require(success, "Transfer failed");
     }
 
     // function feedContract() external payable onlyOwner {}
-
     receive() external payable onlyOwner {
         emit EtherSent(msg.value);
     }

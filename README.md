@@ -40,6 +40,10 @@ forge build
 ```
 forge test
 ```
+5. 📊 (Optional) Check LCOV report:
+```
+open coverage/index.html
+```
 ## ⚠️ Notes
 
 - The `lib/` folder is **not included** in the repository to keep it clean. You must run `forge install` to download dependencies like OpenZeppelin.
