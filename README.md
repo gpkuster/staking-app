@@ -42,6 +42,7 @@ forge test
 ```
 5. 📊 (Optional) Check LCOV report:
 ```
+genhtml lcov.info --output-directory coverage
 open coverage/index.html
 ```
 ## ⚠️ Notes

@@ -5,6 +5,9 @@ out/
 # Dependencies 
 lib/
 
+# Coverage (lcov)
+coverage/
+
 # Ignores development broadcast logs
 !/broadcast
 /broadcast/*/31337/
